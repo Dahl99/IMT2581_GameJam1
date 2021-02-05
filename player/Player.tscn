@@ -28,7 +28,7 @@ animations = [ {
 radius = 20.0103
 height = 47.3502
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
