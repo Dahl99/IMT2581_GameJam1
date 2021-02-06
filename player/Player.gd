@@ -31,3 +31,23 @@ func _physics_process(_delta):
 
 func _on_Void_body_entered(_body):
 	get_tree().change_scene("res://levels/Level1.tscn")
+
+func bounce():
+	velocity.y = JUMPFORCE * 0.5
+
+func hurt(var enemy_pos_x):
+	set_modulate(Color(1, 0.3, 0.3, 0.9))
+	velocity.y = JUMPFORCE * 0.3
+
+	if position.x < enemy_pos_x:
+		velocity.x = -800
+	elif position.x > enemy_pos_x:
+		velocity.x = 800
+	
+	Input.action_release("move_left")
+	Input.action_release("move_right")
+
+	$Timer.start()
+
+func _on_Timer_timeout():
+	get_tree().change_scene("res://levels/Level1.tscn")

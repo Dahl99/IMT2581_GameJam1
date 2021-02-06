@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
+var speed = 50
+
 export var direction = -1
 export var detects_cliffs = true
 
@@ -18,6 +20,27 @@ func _physics_process(_delta):
 		$RayCast2D.position.x = $CollisionShape2D.shape.get_extents().x * direction
 	
 	velocity.y += 20
-	velocity.x = 50 * direction
+	velocity.x = speed * direction
 
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+func _on_top_body_entered(body):
+	$AnimatedSprite.play("hurt")
+	speed = 0
+	set_collision_layer_bit(4, false)
+	set_collision_mask_bit(0, false)
+	$Top.set_collision_layer_bit(4, false)
+	$Top.set_collision_mask_bit(0, false)
+	$Sides.set_collision_layer_bit(4, false)
+	$Sides.set_collision_mask_bit(0, false)
+
+	$Timer.start()
+
+	body.bounce()
+
+func _on_Sides_body_entered(body):
+	# get_tree().change_scene("res://levels/Level1.tscn")
+	body.hurt(position.x)
+
+func _on_Timer_timeout():
+	queue_free()
