@@ -8,6 +8,7 @@ radius = 2.58607
 height = 12.5064
 
 [node name="Mine" type="Area2D"]
+collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
