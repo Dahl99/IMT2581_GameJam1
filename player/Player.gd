@@ -28,3 +28,6 @@ func _physics_process(_delta):
 		$Sprite.play("Jump")
 
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+func _on_Void_body_entered(_body):
+	get_tree().change_scene("res://levels/Level1.tscn")
