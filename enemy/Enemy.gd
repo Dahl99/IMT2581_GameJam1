@@ -39,7 +39,6 @@ func _on_top_body_entered(body):
 	body.bounce()
 
 func _on_Sides_body_entered(body):
-	# get_tree().change_scene("res://levels/Level1.tscn")
 	body.hurt(position.x)
 
 func _on_Timer_timeout():
