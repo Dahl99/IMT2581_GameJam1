@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://levels/level_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ice_cream/IceCream.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/HUD.gd" type="Script" id=9]
 [ext_resource path="res://assets/ice_cream_truck/ice_cream_truck.png" type="Texture" id=10]
+[ext_resource path="res://speech_bubbles/SpeechBubble.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4242.05, 24.9417 )
@@ -100,6 +101,31 @@ scale = Vector2( 1.5, 1.5 )
 position = Vector2( 6485.16, 551.849 )
 scale = Vector2( 1.5, 1.5 )
 
+[node name="IceCreams" type="Node2D" parent="."]
+
+[node name="Chocolate" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 3113.75, 361.32 )
+
+[node name="Vanilla" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 1754.83, 553.652 )
+type = "vanilla"
+
+[node name="Strawberry" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 4370.09, 539.411 )
+type = "strawberry"
+
+[node name="Pistachio" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 5552.97, 169.172 )
+type = "pistachio"
+
+[node name="IceCreamTruck" type="Sprite" parent="."]
+position = Vector2( 651.764, 522.599 )
+scale = Vector2( 1.03746, 1.03746 )
+texture = ExtResource( 10 )
+
+[node name="SpeechBubble" parent="." instance=ExtResource( 11 )]
+position = Vector2( 655.597, 343.672 )
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy1" parent="Enemies" instance=ExtResource( 6 )]
@@ -132,28 +158,6 @@ direction = 1
 [node name="Enemy5" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 4918.88, 504.975 )
 direction = 1
-
-[node name="IceCreams" type="Node2D" parent="."]
-
-[node name="Chocolate" parent="IceCreams" instance=ExtResource( 8 )]
-position = Vector2( 3113.75, 361.32 )
-
-[node name="Vanilla" parent="IceCreams" instance=ExtResource( 8 )]
-position = Vector2( 1754.83, 553.652 )
-type = "vanilla"
-
-[node name="Strawberry" parent="IceCreams" instance=ExtResource( 8 )]
-position = Vector2( 4370.09, 539.411 )
-type = "strawberry"
-
-[node name="Pistachio" parent="IceCreams" instance=ExtResource( 8 )]
-position = Vector2( 5552.97, 169.172 )
-type = "pistachio"
-
-[node name="IceCreamTruck" type="Sprite" parent="."]
-position = Vector2( 651.764, 522.599 )
-scale = Vector2( 1.03746, 1.03746 )
-texture = ExtResource( 10 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 94.6371, 505.493 )
