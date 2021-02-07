@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/level_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -6,9 +6,19 @@
 [ext_resource path="res://assets/background/bg_skies.png" type="Texture" id=4]
 [ext_resource path="res://mine/Mine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/ice_creams/ice_cream_missing.png" type="Texture" id=7]
+[ext_resource path="res://ice_cream/IceCream.tscn" type="PackedScene" id=8]
+[ext_resource path="res://levels/HUD.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4242.05, 24.9417 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.392157 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Level1" type="Node2D"]
 __meta__ = {
@@ -122,6 +132,23 @@ direction = 1
 position = Vector2( 4918.88, 504.975 )
 direction = 1
 
+[node name="IceCreams" type="Node2D" parent="."]
+
+[node name="Chocolate" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 3113.75, 361.32 )
+
+[node name="Vanilla" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 1754.83, 553.652 )
+type = "vanilla"
+
+[node name="Strawberry" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 4370.09, 539.411 )
+type = "strawberry"
+
+[node name="Pistachio" parent="IceCreams" instance=ExtResource( 8 )]
+position = Vector2( 5552.97, 169.172 )
+type = "pistachio"
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 347.851, 457.547 )
 
@@ -139,4 +166,67 @@ drag_margin_top = 0.15
 drag_margin_right = 0.15
 drag_margin_bottom = 0.15
 editor_draw_limits = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_left = 23.0
+margin_top = 19.0
+margin_right = 173.0
+margin_bottom = 67.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/MarginContainer"]
+margin_right = 130.0
+margin_bottom = 28.0
+
+[node name="Vanilla" type="TextureRect" parent="HUD/Panel/MarginContainer/HBoxContainer"]
+margin_right = 29.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+texture = ExtResource( 7 )
+stretch_mode = 1
+
+[node name="Chocolate" type="TextureRect" parent="HUD/Panel/MarginContainer/HBoxContainer"]
+margin_left = 33.0
+margin_right = 63.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+texture = ExtResource( 7 )
+stretch_mode = 1
+
+[node name="Strawberry" type="TextureRect" parent="HUD/Panel/MarginContainer/HBoxContainer"]
+margin_left = 67.0
+margin_right = 96.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+texture = ExtResource( 7 )
+stretch_mode = 1
+
+[node name="Pistachio" type="TextureRect" parent="HUD/Panel/MarginContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 130.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+texture = ExtResource( 7 )
+stretch_mode = 1
 [connection signal="body_entered" from="Void" to="Player" method="_on_Void_body_entered"]
+[connection signal="ice_cream_collected" from="IceCreams/Chocolate" to="HUD" method="_on_ice_cream_collected"]
+[connection signal="ice_cream_collected" from="IceCreams/Vanilla" to="HUD" method="_on_ice_cream_collected"]
+[connection signal="ice_cream_collected" from="IceCreams/Strawberry" to="HUD" method="_on_ice_cream_collected"]
+[connection signal="ice_cream_collected" from="IceCreams/Pistachio" to="HUD" method="_on_ice_cream_collected"]
