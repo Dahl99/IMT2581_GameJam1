@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://levels/level_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/ice_creams/ice_cream_missing.png" type="Texture" id=7]
 [ext_resource path="res://ice_cream/IceCream.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/HUD.gd" type="Script" id=9]
+[ext_resource path="res://assets/ice_cream_truck/ice_cream_truck.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4242.05, 24.9417 )
@@ -64,7 +65,7 @@ shape = SubResource( 1 )
 [node name="Mines" type="Node2D" parent="."]
 
 [node name="Mine" parent="Mines" instance=ExtResource( 5 )]
-position = Vector2( 882.971, 552.024 )
+position = Vector2( 1001.65, 552.31 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="Mine2" parent="Mines" instance=ExtResource( 5 )]
@@ -149,8 +150,13 @@ type = "strawberry"
 position = Vector2( 5552.97, 169.172 )
 type = "pistachio"
 
+[node name="IceCreamTruck" type="Sprite" parent="."]
+position = Vector2( 651.764, 522.599 )
+scale = Vector2( 1.03746, 1.03746 )
+texture = ExtResource( 10 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 347.851, 457.547 )
+position = Vector2( 94.6371, 505.493 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
