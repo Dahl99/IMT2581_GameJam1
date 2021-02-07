@@ -8,7 +8,7 @@ onready var text_bg = $Anchor/ColorRect
 
 func _ready():
 	visible = false
-	set_text("Help! I've lost 4 of my ice creams, can you help me find them?", 3)
+	set_text("Help! I've lost 4 of my ice creams, can you help me find them?")
 
 func set_text(text, wait_time = 3):
 	visible = true
